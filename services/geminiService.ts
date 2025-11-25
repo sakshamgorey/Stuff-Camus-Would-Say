@@ -1,5 +1,6 @@
 import { GoogleGenAI, Type, Schema } from "@google/genai";
 import { CamusQuote } from "../types";
+import { getFallbackQuote } from "./fallbackService";
 
 // Initialize the client
 // API key is guaranteed to be in process.env.API_KEY per environment setup
@@ -48,7 +49,8 @@ export const fetchCamusQuote = async (): Promise<CamusQuote> => {
     const data = JSON.parse(responseText) as CamusQuote;
     return data;
   } catch (error) {
-    console.error("Error fetching quote:", error);
-    throw error;
+    console.warn("Gemini API encountered an issue. Consulting local notebooks (Fallback).", error);
+    // Return a local fallback quote instead of throwing an error
+    return getFallbackQuote();
   }
 };
