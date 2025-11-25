@@ -1,0 +1,5 @@
+{
+  "name": "Camus Absurdity",
+  "description": "A minimalist application that generates profound and random quotes from the philosopher Albert Camus using the Gemini API.",
+  "requestFramePermissions": []
+}
